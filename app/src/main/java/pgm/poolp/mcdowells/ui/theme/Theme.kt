@@ -17,7 +17,8 @@ private val YellowThemeLight = lightColorScheme(
     primary = yellow500,
     onPrimary = Color.Black,
     secondary = blue700,
-    onSecondary = Color.White
+    onSecondary = Color.White,
+    surface = yellow500
 )
 
 private val YellowThemeDark = darkColorScheme(
@@ -37,29 +38,27 @@ fun YellowTheme(
     } else {
         YellowThemeLight
     }
-    McDowellsTheme(darkTheme, colors, content)
+    McDowellsTheme(colors, content)
 }
 
 @Composable
 private fun McDowellsTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
     colorScheme:ColorScheme,
     content: @Composable () -> Unit
 ) {
-    /*
-    val colorScheme = if (darkTheme) {
-        DarkColorScheme
-    } else {
-        LightColorScheme
-    }
-    */
-
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
+            //window.statusBarColor = colorScheme.primary.toArgb()
+            //window.statusBarColor = Color.Transparent.toArgb()
+            window.navigationBarColor = Color.Transparent.toArgb()
+
+            WindowCompat.setDecorFitsSystemWindows(window, false)
+            //WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
+            //window.statusBarColor = Color.Transparent.toArgb()
+
+            //WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
         }
     }
 
