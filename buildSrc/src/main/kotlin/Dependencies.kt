@@ -4,9 +4,9 @@ object Dependencies {
     val activityCompose by lazy {"androidx.activity:activity-compose:${Versions.activityCompose}"}
     val composeBom by lazy {"androidx.compose:compose-bom:${Versions.composeBom}"}
     val composeUi by lazy {"androidx.compose.ui:${Versions.composeUi}"}
-    val composeGraphics by lazy {"androidx.compose.ui:ui-graphics"}
-    val composeUiToolingPreview by lazy {"androidx.compose.ui:ui-tooling-preview"}
-    val composeMaterial3 by lazy {"androidx.compose.material3:material3"}
+    val composeGraphics by lazy {"androidx.compose.ui:${Versions.composeGraphics}"}
+    val composeUiToolingPreview by lazy {"androidx.compose.ui:${Versions.composeUiToolingPreview}"}
+    val composeMaterial3 by lazy {"androidx.compose.material3:${Versions.composeMaterial3}"}
 
     val junit by lazy {"junit:junit:${Versions.junit}"}
     val androidTestJUnit by lazy {"androidx.test.ext:junit:${Versions.androidTestJUnit}"}
