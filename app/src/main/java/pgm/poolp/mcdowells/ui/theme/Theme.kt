@@ -21,8 +21,8 @@ private val YellowThemeLight = lightColorScheme(
 )
 
 private val YellowThemeDark = darkColorScheme(
+    primary = PurpleGrey80,
     primaryContainer = yellowDarkPrimary,
-    primary = yellow200,
     onPrimary = Color.White,
     onSecondary = Color.Black,
     surface = yellowDarkPrimary
