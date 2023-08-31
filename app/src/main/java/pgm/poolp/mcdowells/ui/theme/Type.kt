@@ -19,10 +19,13 @@ val Typography = Typography(
     bodyLarge = TextStyle(
         fontFamily = fonts,
         fontWeight = FontWeight.Normal,
-        fontSize = 28.sp
+        fontSize = 16.sp,
+        lineHeight = 28.sp
     ),
     labelSmall = TextStyle(
-        fontFamily = fonts
+        fontFamily = fonts,
+        fontWeight = FontWeight.Normal,
+        fontSize = 12.sp,
     ),
     headlineLarge = TextStyle(
         fontFamily = fonts,

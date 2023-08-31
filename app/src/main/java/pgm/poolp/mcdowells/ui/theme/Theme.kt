@@ -14,16 +14,16 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
 private val YellowThemeLight = lightColorScheme(
+    primaryContainer = yellow500,
     primary = yellow500,
     onPrimary = Color.Black,
-    secondary = blue700,
     onSecondary = Color.White,
-    surface = yellow500
 )
 
 private val YellowThemeDark = darkColorScheme(
+    primaryContainer = yellowDarkPrimary,
     primary = yellow200,
-    secondary = blue200,
+    onPrimary = Color.White,
     onSecondary = Color.Black,
     surface = yellowDarkPrimary
 )
@@ -67,4 +67,13 @@ private fun McDowellsTheme(
         typography = Typography,
         content = content
     )
+}
+object McDowellsTheme {
+
+    /**
+     * Retrieves the current [Elevations] at the call site's position in the hierarchy.
+     */
+    val elevations: Elevations
+        @Composable
+        get() = LocalElevations.current
 }

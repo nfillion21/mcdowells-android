@@ -1,25 +1,45 @@
 package pgm.poolp.mcdowells
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.selection.toggleable
+import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.Layout
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import pgm.poolp.mcdowells.ui.theme.McDowellsTheme
 import pgm.poolp.mcdowells.ui.theme.YellowTheme
 import kotlin.math.max
 
@@ -29,7 +49,7 @@ fun Onboarding() {
     YellowTheme {
         Scaffold(
             topBar = { AppBar() },
-            containerColor = MaterialTheme.colorScheme.surface
+            containerColor = MaterialTheme.colorScheme.primaryContainer
         ) { innerPadding ->
             Column(
                 modifier = Modifier
@@ -46,13 +66,11 @@ fun Onboarding() {
                         vertical = 32.dp
                     )
                 )
-                /*
                 TopicsGrid(
                     modifier = Modifier
                         .weight(1f)
                         .wrapContentHeight()
                 )
-                */
                 Spacer(Modifier.height(56.dp)) // center grid accounting for FAB
             }
         }
@@ -78,7 +96,6 @@ private fun AppBar() {
     }
 }
 
-/*
 @Composable
 private fun TopicsGrid(modifier: Modifier = Modifier) {
     StaggeredGrid(
@@ -91,54 +108,28 @@ private fun TopicsGrid(modifier: Modifier = Modifier) {
         }
     }
 }
-*/
 
-/*
 @Composable
 private fun TopicChip(topic: Topic) {
-    val (selected, onSelected) = remember { mutableStateOf(false) }
-    val topicChipTransitionState = topicChipTransition(selected)
 
     Surface(
         modifier = Modifier.padding(4.dp),
-        elevation = OwlTheme.elevations.card,
-        shape = MaterialTheme.shapes.medium.copy(
-            topStart = CornerSize(
-                topicChipTransitionState.cornerRadius
-            )
-        )
+        shadowElevation = McDowellsTheme.elevations.card,
+        color = MaterialTheme.colorScheme.surfaceColorAtElevation(0.05.dp),
     ) {
-        Row(modifier = Modifier.toggleable(value = selected, onValueChange = onSelected)) {
-            Box {
-                NetworkImage(
-                    url = topic.imageUrl,
-                    contentDescription = null,
-                    modifier = Modifier
-                        .size(width = 72.dp, height = 72.dp)
-                        .aspectRatio(1f)
-                )
-                if (topicChipTransitionState.selectedAlpha > 0f) {
-                    Surface(
-                        color = pink500.copy(alpha = topicChipTransitionState.selectedAlpha),
-                        modifier = Modifier.matchParentSize()
-                    ) {
-                        Icon(
-                            imageVector = Icons.Filled.Done,
-                            contentDescription = null,
-                            tint = MaterialTheme.colors.onPrimary.copy(
-                                alpha = topicChipTransitionState.selectedAlpha
-                            ),
-                            modifier = Modifier
-                                .wrapContentSize()
-                                .scale(topicChipTransitionState.checkScale)
-                        )
-                    }
-                }
-            }
+        Row() {
+            Image(
+                painterResource(id = R.drawable.ic_grain),
+                colorFilter = ColorFilter.tint(color = MaterialTheme.colorScheme.onPrimary),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(width = 72.dp, height = 72.dp)
+                    .aspectRatio(1f)
+            )
             Column {
                 Text(
                     text = topic.name,
-                    style = MaterialTheme.typography.body1,
+                    style = MaterialTheme.typography.bodyLarge,
                     modifier = Modifier.padding(
                         start = 16.dp,
                         top = 16.dp,
@@ -147,26 +138,23 @@ private fun TopicChip(topic: Topic) {
                     )
                 )
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
-                        Icon(
-                            painter = painterResource(R.drawable.ic_grain),
-                            contentDescription = null,
-                            modifier = Modifier
-                                .padding(start = 16.dp)
-                                .size(12.dp)
-                        )
-                        Text(
-                            text = topic.courses.toString(),
-                            style = MaterialTheme.typography.caption,
-                            modifier = Modifier.padding(start = 8.dp)
-                        )
-                    }
+                    Icon(
+                        painter = painterResource(R.drawable.ic_grain),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .padding(start = 16.dp)
+                            .size(12.dp)
+                    )
+                    Text(
+                        text = topic.courses.toString(),
+                        style = MaterialTheme.typography.labelSmall,
+                        modifier = Modifier.padding(start = 8.dp)
+                    )
                 }
             }
         }
     }
 }
-*/
 
 @Composable
 private fun StaggeredGrid(
@@ -229,6 +217,6 @@ private fun OnboardingPreview() {
 @Composable
 private fun TopicChipPreview() {
     YellowTheme {
-        //TopicChip(topics.first())
+        TopicChip(topics.first())
     }
 }
