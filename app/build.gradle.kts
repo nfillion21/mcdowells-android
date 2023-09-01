@@ -3,7 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
-    kotlin("plugin.serialization") version "1.9.10"
+    kotlin("plugin.serialization") version embeddedKotlinVersion
 }
 
 android {
@@ -67,6 +67,7 @@ dependencies {
     implementation(Dependencies.composeGraphics)
     implementation(Dependencies.composeUiToolingPreview)
     implementation(Dependencies.composeMaterial3)
+    implementation(project(mapOf("path" to ":core")))
     testImplementation(Dependencies.junit)
     androidTestImplementation(Dependencies.androidTestJUnit)
     androidTestImplementation(Dependencies.androidTestEspresso)

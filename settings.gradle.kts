@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "McDowell's"
 include(":app")
- 
+include(":core")
