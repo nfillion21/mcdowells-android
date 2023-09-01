@@ -17,8 +17,8 @@ object Versions {
     const val debugComposeUiTestManifest = "ui-test-manifest"
 
     const val hilt = "2.44"
-
     const val ktor = "2.3.3"
+    const val paging = "3.2.0"
     /*
     const val workRuntime = "2.8.1"
     const val room = "2.5.1"

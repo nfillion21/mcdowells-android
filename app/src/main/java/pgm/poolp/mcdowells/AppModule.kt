@@ -35,6 +35,7 @@ class AppModule {
                 json(Json {
                     prettyPrint = true
                     isLenient = true
+                    ignoreUnknownKeys = true
                 })
 
                 engine {
@@ -57,4 +58,12 @@ class AppModule {
             }
         }
     }
+
+    @Provides
+    @Singleton
+    fun provideBigMickRepository(): BigMickRepository = BigMickRepository(provideKtorHttpClient())
+
+    @Provides
+    @Singleton
+    fun provideBigMickSource() = BigMickSource(provideBigMickRepository())
 }

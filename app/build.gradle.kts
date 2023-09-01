@@ -59,6 +59,7 @@ android {
 dependencies {
     implementation(Dependencies.coreAndroidX)
     implementation(Dependencies.lifeCycleRuntime)
+    implementation(Dependencies.viewModelCompose)
     implementation(Dependencies.activityCompose)
     implementation(platform(Dependencies.composeBom))
     implementation(Dependencies.composeUi)
@@ -80,6 +81,8 @@ dependencies {
     implementation(Dependencies.ktorSerializationJSON)
     implementation(Dependencies.ktorContentNegotiation)
     implementation(Dependencies.ktorClientLogging)
+
+    implementation(Dependencies.paging)
 }
 
 // Allow references to generated code

@@ -1,6 +1,7 @@
 object Dependencies {
     val coreAndroidX by lazy {"androidx.core:core-ktx:${Versions.coreAndroidX}"}
     val lifeCycleRuntime by lazy {"androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifeCycleRuntime}"}
+    val viewModelCompose by lazy {"androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.lifeCycleRuntime}"}
     val activityCompose by lazy {"androidx.activity:activity-compose:${Versions.activityCompose}"}
     val composeBom by lazy {"androidx.compose:compose-bom:${Versions.composeBom}"}
     val composeUi by lazy {"androidx.compose.ui:${Versions.composeUi}"}
@@ -25,6 +26,10 @@ object Dependencies {
     val ktorSerializationJSON by lazy { "io.ktor:ktor-serialization-kotlinx-json:${Versions.ktor}" }
     val ktorContentNegotiation by lazy { "io.ktor:ktor-client-content-negotiation:${Versions.ktor}" }
     val ktorClientLogging by lazy { "io.ktor:ktor-client-logging:${Versions.ktor}" }
+
+    // Paging
+    val paging by lazy {"androidx.paging:paging-compose:${Versions.paging}"}
+
     /*
     // Coroutine
     val workRuntime by lazy { "androidx.work:work-runtime-ktx:${Versions.workRuntime}" }
@@ -34,16 +39,9 @@ object Dependencies {
     val roomKtx by lazy {"androidx.room:room-ktx:${Versions.room}"}
     val roomCompiler by lazy {"androidx.room:room-compiler:${Versions.room}"}
 
-    // GSon
-    val gson by lazy {"com.google.code.gson:gson:${Versions.gson}"}
-
-    // ktor
-    val ktor by lazy {"io.ktor:ktor-client-android:${Versions.ktor}"}
-
     // datastore
     val datastorePreferences by lazy {"androidx.datastore:datastore-preferences:${Versions.datastoreVersion}"}
 
     val coilCompose by lazy {"io.coil-kt:coil-compose:${Versions.coilCompose}"}
     */
-
 }
