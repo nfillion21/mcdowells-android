@@ -27,10 +27,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class AppModule {
 
-    companion object {
-        private const val TIMEOUT = 60_000
-    }
-
     @Provides
     @Singleton
     fun provideKtorHttpClient(): HttpClient {
@@ -43,8 +39,8 @@ class AppModule {
                 })
 
                 engine {
-                    connectTimeout = TIMEOUT
-                    socketTimeout = TIMEOUT
+                    connectTimeout = 15_000
+                    socketTimeout = 15_000
                 }
             }
 

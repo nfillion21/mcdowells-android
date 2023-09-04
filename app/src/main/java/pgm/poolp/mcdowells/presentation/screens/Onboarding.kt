@@ -128,7 +128,7 @@ private fun TopicChip(bigMick: BigMick) {
             .padding(4.dp),
         shadowElevation = McDowellsTheme.elevations.card,
         tonalElevation = McDowellsTheme.elevations.card,
-        color = MaterialTheme.colorScheme.surfaceColorAtElevation(6.dp),
+        color = MaterialTheme.colorScheme.surfaceColorAtElevation(2.dp),
     ) {
         Row() {
             Image(
