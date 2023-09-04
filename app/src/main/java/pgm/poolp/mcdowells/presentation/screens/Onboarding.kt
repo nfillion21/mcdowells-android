@@ -158,11 +158,13 @@ private fun TopicChip(bigMick: BigMick) {
                             .padding(start = 16.dp)
                             .size(12.dp)
                     )
-                    Text(
-                        text = bigMick.createdAt,
-                        style = MaterialTheme.typography.labelSmall,
-                        modifier = Modifier.padding(start = 8.dp)
-                    )
+                    bigMick.description?.let {
+                        Text(
+                            text = it,
+                            style = MaterialTheme.typography.labelSmall,
+                            modifier = Modifier.padding(start = 8.dp)
+                        )
+                    }
                 }
             }
         }
