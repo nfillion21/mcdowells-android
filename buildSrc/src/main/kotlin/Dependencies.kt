@@ -29,19 +29,4 @@ object Dependencies {
 
     // Paging
     val paging by lazy {"androidx.paging:paging-compose:${Versions.paging}"}
-
-    /*
-    // Coroutine
-    val workRuntime by lazy { "androidx.work:work-runtime-ktx:${Versions.workRuntime}" }
-
-    // Room
-    val roomRuntine by lazy {"androidx.room:room-runtime:${Versions.room}"}
-    val roomKtx by lazy {"androidx.room:room-ktx:${Versions.room}"}
-    val roomCompiler by lazy {"androidx.room:room-compiler:${Versions.room}"}
-
-    // datastore
-    val datastorePreferences by lazy {"androidx.datastore:datastore-preferences:${Versions.datastoreVersion}"}
-
-    val coilCompose by lazy {"io.coil-kt:coil-compose:${Versions.coilCompose}"}
-    */
 }

@@ -58,6 +58,8 @@ android {
 }
 
 dependencies {
+    implementation(project(mapOf("path" to ":core")))
+
     implementation(Dependencies.coreAndroidX)
     implementation(Dependencies.lifeCycleRuntime)
     implementation(Dependencies.viewModelCompose)
@@ -67,7 +69,6 @@ dependencies {
     implementation(Dependencies.composeGraphics)
     implementation(Dependencies.composeUiToolingPreview)
     implementation(Dependencies.composeMaterial3)
-    implementation(project(mapOf("path" to ":core")))
     testImplementation(Dependencies.junit)
     androidTestImplementation(Dependencies.androidTestJUnit)
     androidTestImplementation(Dependencies.androidTestEspresso)

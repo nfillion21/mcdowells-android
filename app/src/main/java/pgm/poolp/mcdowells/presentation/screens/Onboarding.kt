@@ -1,4 +1,4 @@
-package pgm.poolp.mcdowells
+package pgm.poolp.mcdowells.presentation.screens
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.staggeredgrid.LazyHorizontalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
-import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -36,12 +35,11 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.itemKey
 import kotlinx.coroutines.flow.Flow
-import pgm.poolp.mcdowells.data.BigMick
-import pgm.poolp.mcdowells.ui.theme.McDowellsTheme
-import pgm.poolp.mcdowells.ui.theme.YellowTheme
-import pgm.poolp.mcdowells.viewmodels.BigMickViewModel
+import pgm.poolp.core.domain.BigMick
+import pgm.poolp.mcdowells.R
+import pgm.poolp.mcdowells.presentation.ui.theme.McDowellsTheme
+import pgm.poolp.mcdowells.presentation.ui.theme.YellowTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

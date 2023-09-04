@@ -1,4 +1,4 @@
-package pgm.poolp.mcdowells
+package pgm.poolp.mcdowells.app.di
 
 import android.util.Log
 import dagger.Module
@@ -17,6 +17,10 @@ import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
+import pgm.poolp.core.data.BigMickRepository
+import pgm.poolp.core.usecase.GetBigMicksUseCase
+import pgm.poolp.mcdowells.framework.data.BigMickDataSourceImpl
+import pgm.poolp.mcdowells.framework.paging.BigMickPagingSource
 import javax.inject.Singleton
 
 @Module
@@ -61,9 +65,17 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideBigMickRepository(): BigMickRepository = BigMickRepository(provideKtorHttpClient())
+    fun provideBigMickPagingSource() = BigMickPagingSource(provideGetBigMicksUseCase())
 
     @Provides
     @Singleton
-    fun provideBigMickSource() = BigMickSource(provideBigMickRepository())
+    fun provideGetBigMicksUseCase() = GetBigMicksUseCase(provideBigMickRepository())
+
+    @Provides
+    @Singleton
+    fun provideBigMickRepository() = BigMickRepository(provideBigMickDataSourceImpl())
+
+    @Provides
+    @Singleton
+    fun provideBigMickDataSourceImpl() = BigMickDataSourceImpl(provideKtorHttpClient())
 }

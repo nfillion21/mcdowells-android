@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package pgm.poolp.mcdowells.ui.theme
+package pgm.poolp.mcdowells.presentation.ui.theme
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf

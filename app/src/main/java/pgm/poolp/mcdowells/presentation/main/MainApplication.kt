@@ -1,4 +1,4 @@
-package pgm.poolp.mcdowells
+package pgm.poolp.mcdowells.presentation.main
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

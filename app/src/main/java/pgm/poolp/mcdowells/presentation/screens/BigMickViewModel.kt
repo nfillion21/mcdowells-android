@@ -1,4 +1,4 @@
-package pgm.poolp.mcdowells.viewmodels
+package pgm.poolp.mcdowells.presentation.screens
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,13 +8,13 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
-import pgm.poolp.mcdowells.BigMickSource
-import pgm.poolp.mcdowells.data.BigMick
+import pgm.poolp.mcdowells.framework.paging.BigMickPagingSource
+import pgm.poolp.core.domain.BigMick
 import javax.inject.Inject
 
 @HiltViewModel
 class BigMickViewModel @Inject constructor(
-    private val bigMickSource: BigMickSource
+    private val bigMickSource: BigMickPagingSource
 ) : ViewModel() {
 
     val bigMicks: Flow<PagingData<BigMick>> = Pager(

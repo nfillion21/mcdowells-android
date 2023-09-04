@@ -1,4 +1,4 @@
-package pgm.poolp.mcdowells.ui.theme
+package pgm.poolp.mcdowells.presentation.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

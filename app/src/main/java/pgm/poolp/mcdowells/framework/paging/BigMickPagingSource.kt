@@ -1,17 +1,18 @@
-package pgm.poolp.mcdowells
+package pgm.poolp.mcdowells.framework.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import pgm.poolp.mcdowells.data.BigMick
+import pgm.poolp.core.domain.BigMick
+import pgm.poolp.core.usecase.GetBigMicksUseCase
 
-class BigMickSource(
-    private val postRepository: BigMickRepository
+class BigMickPagingSource(
+    private val getBigMicksUseCase: GetBigMicksUseCase
 ) : PagingSource<Int, BigMick>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, BigMick> {
         return try {
             val nextPage = params.key ?: 1
-            val posts = postRepository.getPosts(nextPage)
+            val posts = getBigMicksUseCase.invoke(nextPage)
 
             LoadResult.Page(
                 data = posts,

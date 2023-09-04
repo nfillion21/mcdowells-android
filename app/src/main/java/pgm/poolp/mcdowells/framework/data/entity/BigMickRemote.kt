@@ -1,4 +1,4 @@
-package pgm.poolp.mcdowells
+package pgm.poolp.mcdowells.framework.data.entity
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

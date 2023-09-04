@@ -1,4 +1,4 @@
-package pgm.poolp.mcdowells.ui.theme
+package pgm.poolp.mcdowells.presentation.ui.theme
 
 import android.app.Activity
 import androidx.compose.foundation.isSystemInDarkTheme
