@@ -20,9 +20,7 @@ class BigMickDataSourceImpl @Inject constructor(private val ktorHttpClient: Http
         return list.map { bigMick ->
             BigMick(
                 id = bigMick.id,
-                title = bigMick.title.title,
-                description = bigMick.description.description,
-                image = bigMick.image
+                createdAt = bigMick.createdAt
             )
         }
     }

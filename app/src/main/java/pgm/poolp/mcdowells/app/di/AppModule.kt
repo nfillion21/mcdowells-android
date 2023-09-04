@@ -20,6 +20,7 @@ import kotlinx.serialization.json.Json
 import pgm.poolp.core.data.BigMickRepository
 import pgm.poolp.core.usecase.GetBigMicksUseCase
 import pgm.poolp.mcdowells.framework.data.BigMickDataSourceImpl
+import pgm.poolp.mcdowells.framework.data.Env
 import pgm.poolp.mcdowells.framework.paging.BigMickPagingSource
 import javax.inject.Singleton
 
@@ -55,6 +56,7 @@ class AppModule {
 
             install(DefaultRequest) {
                 header(HttpHeaders.ContentType, ContentType.Application.Json)
+                header(HttpHeaders.Authorization, "Client-ID ${Env.API_KEY}")
             }
         }
     }
