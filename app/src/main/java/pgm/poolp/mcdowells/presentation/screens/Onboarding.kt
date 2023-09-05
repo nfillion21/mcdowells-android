@@ -1,12 +1,10 @@
 package pgm.poolp.mcdowells.presentation.screens
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -16,7 +14,6 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.staggeredgrid.LazyHorizontalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -28,8 +25,6 @@ import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
@@ -102,7 +97,7 @@ fun BigMicksList(flow: Flow<PagingData<BigMick>>) {
             key = bigMickItems.itemKey { it.id }
         ) {index ->
             val item = bigMickItems[index]
-            TopicChip(bigMick = item!!)
+            BigMickChip(bigMick = item!!)
         }
     }
 }
@@ -127,7 +122,7 @@ private fun AppBar() {
 }
 
 @Composable
-private fun TopicChip(bigMick: BigMick) {
+private fun BigMickChip(bigMick: BigMick) {
 
     Surface(
         modifier = Modifier
@@ -151,7 +146,8 @@ private fun TopicChip(bigMick: BigMick) {
 
             Column {
                 Text(
-                    text = bigMick.index,
+
+                    text = bigMick.index.toString() + " / " + bigMick.total,
                     style = MaterialTheme.typography.bodyLarge,
                     modifier = Modifier.padding(
                         start = 16.dp,

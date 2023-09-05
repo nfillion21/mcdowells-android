@@ -11,13 +11,14 @@ class BigMickPagingSource(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, BigMick> {
         return try {
-            val nextPage = params.key ?: 1
-            val posts = getBigMicksUseCase.invoke(nextPage)
+            val position = params.key ?: 1
+            val bigMicks = getBigMicksUseCase.invoke(position)
+            val totalPages = bigMicks.takeIf { it.isNotEmpty() }?.get(0)?.totalPages
 
             LoadResult.Page(
-                data = posts,
-                prevKey = if (nextPage == 1) null else nextPage.minus(1),
-                nextKey = if (posts.isEmpty()) null else nextPage.plus(1)
+                data = bigMicks,
+                prevKey = if (position == 1) null else position.minus(1),
+                nextKey = if (totalPages != null && position >= totalPages) null else position.plus(1)
             )
         } catch (e: Exception) {
             LoadResult.Error(e)
