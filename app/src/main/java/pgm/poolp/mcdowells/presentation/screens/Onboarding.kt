@@ -151,7 +151,7 @@ private fun TopicChip(bigMick: BigMick) {
 
             Column {
                 Text(
-                    text = bigMick.id,
+                    text = bigMick.index,
                     style = MaterialTheme.typography.bodyLarge,
                     modifier = Modifier.padding(
                         start = 16.dp,
