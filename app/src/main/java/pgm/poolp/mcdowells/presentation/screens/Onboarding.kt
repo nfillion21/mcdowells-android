@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.staggeredgrid.LazyHorizontalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -27,8 +28,12 @@ import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.pluralStringResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -36,6 +41,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import kotlinx.coroutines.flow.Flow
 import pgm.poolp.core.domain.BigMick
 import pgm.poolp.mcdowells.R
@@ -130,15 +137,18 @@ private fun TopicChip(bigMick: BigMick) {
         tonalElevation = McDowellsTheme.elevations.card,
         color = MaterialTheme.colorScheme.surfaceColorAtElevation(2.dp),
     ) {
-        Row() {
-            Image(
-                painterResource(id = R.drawable.ic_grain),
-                colorFilter = ColorFilter.tint(color = MaterialTheme.colorScheme.onPrimary),
-                contentDescription = null,
+        Row {
+            AsyncImage(
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data(bigMick.small)
+                    .crossfade(true)
+                    .build(),
+                placeholder = painterResource(R.drawable.ic_grain),
+                contentDescription = stringResource(R.string.description),
                 modifier = Modifier
-                    .size(width = 72.dp, height = 72.dp)
-                    .aspectRatio(1f)
+                    .height(height = 72.dp)
             )
+
             Column {
                 Text(
                     text = bigMick.id,
@@ -158,13 +168,15 @@ private fun TopicChip(bigMick: BigMick) {
                             .padding(start = 16.dp)
                             .size(12.dp)
                     )
-                    bigMick.description?.let {
-                        Text(
-                            text = it,
-                            style = MaterialTheme.typography.labelSmall,
-                            modifier = Modifier.padding(start = 8.dp)
-                        )
-                    }
+                    Text(
+                        text = pluralStringResource(
+                            id = R.plurals.like_plural,
+                            count = bigMick.likes,
+                            formatArgs = arrayOf(bigMick.likes)
+                        ),
+                        style = MaterialTheme.typography.labelSmall,
+                        modifier = Modifier.padding(start = 8.dp)
+                    )
                 }
             }
         }

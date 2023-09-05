@@ -86,6 +86,7 @@ dependencies {
     implementation(Dependencies.ktorClientLogging)
 
     implementation(Dependencies.paging)
+    implementation(Dependencies.coil)
 }
 
 // Allow references to generated code

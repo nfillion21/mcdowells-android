@@ -15,6 +15,7 @@ data class BigMicksRemote(
 data class BigMickRemote(
     val id: String,
     val description: String?,
+    val likes: Int,
     val urls: BigMickRemotePhotos
 )
 

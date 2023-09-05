@@ -29,4 +29,7 @@ object Dependencies {
 
     // Paging
     val paging by lazy {"androidx.paging:paging-compose:${Versions.paging}"}
+
+    // Coil
+    val coil by lazy {"io.coil-kt:coil-compose:${Versions.coil}"}
 }
