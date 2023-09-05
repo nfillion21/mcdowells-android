@@ -32,4 +32,7 @@ object Dependencies {
 
     // Coil
     val coil by lazy {"io.coil-kt:coil-compose:${Versions.coil}"}
+
+    val iconsExtended by lazy {"androidx.compose.material:material-icons-extended:${Versions.composeVersion}"}
+
 }

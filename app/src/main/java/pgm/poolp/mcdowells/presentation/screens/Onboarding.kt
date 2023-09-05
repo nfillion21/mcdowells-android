@@ -4,7 +4,6 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Arrangement.Absolute.Center
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,6 +11,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -20,6 +20,10 @@ import androidx.compose.foundation.lazy.staggeredgrid.LazyHorizontalStaggeredGri
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.LocalCafe
+import androidx.compose.material.icons.outlined.LunchDining
+import androidx.compose.material.icons.outlined.Restaurant
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -29,10 +33,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -49,8 +51,6 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
 import coil.compose.AsyncImage
 import coil.compose.AsyncImagePainter
-import coil.compose.SubcomposeAsyncImage
-import coil.compose.SubcomposeAsyncImageContent
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Size
@@ -77,7 +77,7 @@ fun Onboarding() {
                 //verticalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = "Choose topics that interest you",
+                    text = stringResource(id = R.string.select_big_mick),
                     style = MaterialTheme.typography.headlineLarge,
                     textAlign = TextAlign.End,
                     modifier = Modifier.padding(
@@ -92,6 +92,8 @@ fun Onboarding() {
                 BigMicksList(flow = bigMickViewModel.bigMicks)
 
                 Spacer(modifier = Modifier.weight(1.0f))
+
+                Spacer(Modifier.height(56.dp))
             }
         }
     }
@@ -121,19 +123,26 @@ fun BigMicksList(flow: Flow<PagingData<BigMick>>) {
 @Composable
 private fun AppBar() {
     Row(
-        horizontalArrangement = Arrangement.SpaceBetween,
+        horizontalArrangement = Arrangement.spacedBy(4.dp),
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .fillMaxWidth()
             .statusBarsPadding()
+            .navigationBarsPadding()
+            .padding(14.dp)
     ) {
-        /*
-        Image(
-            painter = painterResource(id = OwlTheme.images.lockupLogo),
-            contentDescription = null,
-            modifier = Modifier.padding(16.dp)
+        Icon(
+            imageVector = Icons.Outlined.Restaurant,
+            contentDescription = stringResource(id = R.string.description),
         )
-        */
+        Icon(
+            imageVector = Icons.Outlined.LunchDining,
+            contentDescription = stringResource(id = R.string.description),
+        )
+        Icon(
+            imageVector = Icons.Outlined.LocalCafe,
+            contentDescription = stringResource(id = R.string.description),
+        )
     }
 }
 

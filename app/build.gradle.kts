@@ -87,6 +87,7 @@ dependencies {
 
     implementation(Dependencies.paging)
     implementation(Dependencies.coil)
+    implementation(Dependencies.iconsExtended)
 }
 
 // Allow references to generated code

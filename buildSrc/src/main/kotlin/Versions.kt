@@ -20,13 +20,5 @@ object Versions {
     const val ktor = "2.3.3"
     const val paging = "3.2.0"
     const val coil = "2.4.0"
-    /*
-    const val workRuntime = "2.8.1"
-    const val room = "2.5.1"
-    const val gson = "2.10.1"
-    const val ktor = "2.3.0"
-    const val hiltNavigationComposeVersion = "1.0.0"
-    const val datastoreVersion = "1.0.0"
-    const val coilCompose = "2.3.0"
-    */
+    const val composeVersion = "1.4.3"
 }
