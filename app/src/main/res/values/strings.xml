@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">McDowell\'s</string>
     <string name="description">Description</string>
-    <string name="select_big_mick">Select photo that you like</string>
+    <string name="select_big_mick">Select a photo that you like</string>
     <plurals name="like_plural">
         <item quantity="one">%d Like</item>
         <item quantity="other">%d Likes</item>
