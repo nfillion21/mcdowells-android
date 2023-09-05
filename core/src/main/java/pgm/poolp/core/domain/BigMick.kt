@@ -7,5 +7,6 @@ data class BigMick(
     val totalPages: Int,
     val description: String?,
     val likes: Int,
-    val small: String
+    val small: String,
+    val regular: String
 )

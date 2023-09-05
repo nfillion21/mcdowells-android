@@ -25,6 +25,7 @@ class BigMickDataSourceImpl @Inject constructor(private val ktorHttpClient: Http
                 totalPages = bigMicksRemote.totalPages,
                 description = bigMick.description,
                 small = bigMick.urls.small,
+                regular = bigMick.urls.regular,
                 likes = bigMick.likes
             )
         }

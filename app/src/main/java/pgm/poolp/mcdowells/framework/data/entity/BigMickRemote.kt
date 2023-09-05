@@ -22,6 +22,6 @@ data class BigMickRemote(
 @Serializable
 data class BigMickRemotePhotos(
     val thumb: String,
-    //val regular: String,
+    val regular: String,
     val small: String
 )
