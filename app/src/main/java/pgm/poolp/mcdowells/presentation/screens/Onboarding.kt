@@ -35,6 +35,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.itemKey
 import kotlinx.coroutines.flow.Flow
 import pgm.poolp.core.domain.BigMick
 import pgm.poolp.mcdowells.R
@@ -84,7 +85,6 @@ fun BigMicksList(flow: Flow<PagingData<BigMick>>) {
     val bigMickItems = flow.collectAsLazyPagingItems()
     LazyHorizontalStaggeredGrid(
         modifier = Modifier
-            .padding(horizontal = 8.dp)
             .height(height = 240.dp),
         verticalArrangement = Arrangement.spacedBy(0.dp),
         horizontalItemSpacing = 0.dp,
@@ -92,7 +92,7 @@ fun BigMicksList(flow: Flow<PagingData<BigMick>>) {
 
         items(
             count = bigMickItems.itemCount,
-            //key = bigMickItems.itemKey { it.id }
+            key = bigMickItems.itemKey { it.id }
         ) {index ->
             val item = bigMickItems[index]
             TopicChip(bigMick = item!!)
