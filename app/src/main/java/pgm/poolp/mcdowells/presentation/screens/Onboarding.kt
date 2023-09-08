@@ -48,7 +48,6 @@ import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.itemKey
 import coil.compose.AsyncImage
 import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
@@ -111,8 +110,8 @@ fun BigMicksList(flow: Flow<PagingData<BigMick>>) {
         rows = StaggeredGridCells.Fixed(3)) {
 
         items(
-            count = bigMickItems.itemCount,
-            key = bigMickItems.itemKey { it.id }
+            count = bigMickItems.itemCount
+            //key = bigMickItems.itemKey { it.id }
         ) {index ->
             val item = bigMickItems[index]
             BigMickChip(bigMick = item!!)
@@ -205,48 +204,53 @@ private fun BigMickChip(bigMick: BigMick) {
 
     if (openDialog.value) {
         Dialog(onDismissRequest = { openDialog.value = false }) {
-            Surface(
-                modifier = Modifier
-                    .wrapContentSize()
-                    .clickable { openDialog.value = false },
-                color = MaterialTheme.colorScheme.surfaceColorAtElevation(2.dp),
-            ) {
-                Column() {
-                    val painter = rememberAsyncImagePainter(
-                        model = ImageRequest.Builder(LocalContext.current)
-                            .data(bigMick.regular)
-                            .size(Size.ORIGINAL) // Set the target size to load the image at.
-                            .build()
-                    )
-
-                    if (painter.state is AsyncImagePainter.State.Success) {
-                        // This will be executed during the first composition if the image is in the memory cache.
-                    }
-
-                    if (painter.state is AsyncImagePainter.State.Loading) {
-                        Box(modifier = Modifier
-                            .fillMaxSize(),
-                            contentAlignment = Alignment.Center) { // contentAlignment will align its content as provided Alignment in our case it's Center
-                            CircularProgressIndicator()
-                        }
-                    }
-
-                    Image(
-                        painter = painter,
-                        contentDescription = stringResource(R.string.description)
-                    )
-
-                    bigMick.description?.let {
-                        Text(
-                            text = it,
-                            style = MaterialTheme.typography.labelSmall,
-                            modifier = Modifier.padding(
-                                start = 16.dp,
-                                top = 16.dp,
-                                end = 16.dp,
-                                bottom = 8.dp
-                            )
+            Box(Modifier.clickable { openDialog.value = false }) {
+                Surface(
+                    modifier = Modifier
+                        .wrapContentSize()
+                        .align(Alignment.Center)
+                        .clickable { openDialog.value = false },
+                    color = MaterialTheme.colorScheme.surfaceColorAtElevation(2.dp),
+                ) {
+                    Column() {
+                        val painter = rememberAsyncImagePainter(
+                            model = ImageRequest.Builder(LocalContext.current)
+                                .data(bigMick.regular)
+                                .size(Size.ORIGINAL) // Set the target size to load the image at.
+                                .build()
                         )
+
+                        if (painter.state is AsyncImagePainter.State.Success) {
+                            // This will be executed during the first composition if the image is in the memory cache.
+                        }
+
+                        if (painter.state is AsyncImagePainter.State.Loading) {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) { // contentAlignment will align its content as provided Alignment in our case it's Center
+                                CircularProgressIndicator()
+                            }
+                        }
+
+                        Image(
+                            painter = painter,
+                            contentDescription = stringResource(R.string.description)
+                        )
+
+                        bigMick.description?.let {
+                            Text(
+                                text = it,
+                                style = MaterialTheme.typography.labelSmall,
+                                modifier = Modifier.padding(
+                                    start = 16.dp,
+                                    top = 16.dp,
+                                    end = 16.dp,
+                                    bottom = 8.dp
+                                )
+                            )
+                        }
                     }
                 }
             }
